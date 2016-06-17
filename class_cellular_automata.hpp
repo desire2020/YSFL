@@ -2,6 +2,7 @@
 #define CLASS_CELLULAR_AUTOMATA
 #include <string>
 #include <vector>
+#include <QGraphicsView>
 using std :: string;
 using std :: vector;
 namespace YSFL
@@ -10,6 +11,7 @@ namespace YSFL
     class simulated_world;
     class cellular_automata;
     extern vector<cellular_automata> all_cells;
+    extern simulated_world universe_616; //I'm a super Marvel fan! :)
 	class cellular_automata
 	{
 	protected:
@@ -26,6 +28,8 @@ namespace YSFL
 		int succ_state[world_size][world_size];
 	public:
 		void evolute();
+        void print(QGraphicsView & target);
+        void randomize();
 		int& operator()(int x, int y);
 	};
 }
