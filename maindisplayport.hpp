@@ -15,6 +15,9 @@ public:
     explicit MainDisplayPort(QWidget *parent = 0);
     ~MainDisplayPort();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::MainDisplayPort *ui;
 };

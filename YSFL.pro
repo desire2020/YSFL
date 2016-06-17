@@ -13,7 +13,8 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        maindisplayport.cpp
+        maindisplayport.cpp \
+    class_cellular_automata.cpp
 
 HEADERS  += maindisplayport.hpp \
     class_cellular_automata.hpp

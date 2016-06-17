@@ -1,10 +1,15 @@
 #ifndef CLASS_CELLULAR_AUTOMATA
 #define CLASS_CELLULAR_AUTOMATA
 #include <string>
+#include <vector>
 using std :: string;
+using std :: vector;
 namespace YSFL
 {
 	const int world_size = 100;
+    class simulated_world;
+    class cellular_automata;
+    extern vector<cellular_automata> all_cells;
 	class cellular_automata
 	{
 	protected:
