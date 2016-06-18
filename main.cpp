@@ -3,14 +3,32 @@
 #include <QApplication>
 #include <QGraphicsItem>
 #include <QPainter>
+#include <QMessageBox>
 #include <fstream>
 #include <iostream>
-using std :: ifstream;
+#include <ctime>
+#include <cstdlib>
+using namespace std;
 using YSFL :: cellular_automata;
 using YSFL :: simulated_world;
 using YSFL :: dict;
+void create_std()
+{
+    ofstream fout("settings.out");
+    fout << "TTTTTGATAGTATAXTCTCCG\nTTTTTGATAGTAGCTACATTCTTGATTGTTTAXTCCCCA\n";
+    fout.close();
+}
+
 void initialization()
 {
+    ifstream sfin;
+    sfin.open("settings.in", ios :: in);
+    if (!sfin.is_open())
+    {
+        create_std();
+        QMessageBox::about(NULL, "请注意", "基因信息已被初始化为默认值");
+        sfin.open("settings.in", ios :: in);
+    }
     dict[string("TTT")] = 0;
     dict[string("TTC")] = 0;
     dict[string("TTA")] = 1;
@@ -74,14 +92,21 @@ void initialization()
     dict[string("CGG")] = 13;
     dict[string("AGG")] = 14;
     dict[string("GGG")] = 15;
-    YSFL :: all_cells.push_back(cellular_automata("if equals detect 1 3 born die)"));
-    YSFL :: all_cells.push_back(cellular_automata("if equals detect 1 2 still if equals detect 1 3 born die"));
+    string inp;
+    sfin >> inp;
+    YSFL :: all_cells.push_back(cellular_automata(inp));
+    sfin >> inp;
+    YSFL :: all_cells.push_back(cellular_automata(inp));
+    sfin.close();
 }
 
 int main(int argc, char *argv[])
 {
+    srand(time(NULL));
     QApplication a(argc, argv);
+    initialization();
     MainDisplayPort w;
+    w.move(1000, 800);
     QGraphicsScene scene;
     scene.setSceneRect(0,0,900,900);
     scene.setItemIndexMethod(QGraphicsScene::NoIndex);

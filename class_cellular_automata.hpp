@@ -15,6 +15,8 @@ namespace YSFL
     extern vector<cellular_automata> all_cells;
     extern simulated_world universe_616; //I'm a super Marvel fan! :)
     extern unordered_map<string, int> dict;
+    extern QGraphicsScene *DisplayScene;
+    extern QGraphicsView *DisplayView;
 	class cellular_automata
 	{
 	protected:
