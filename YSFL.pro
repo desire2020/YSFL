@@ -14,9 +14,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         maindisplayport.cpp \
-    class_cellular_automata.cpp
+    class_cellular_automata.cpp \
+    identity.cpp
 
 HEADERS  += maindisplayport.hpp \
-    class_cellular_automata.hpp
+    class_cellular_automata.hpp \
+    identity.h
 
 FORMS    += maindisplayport.ui

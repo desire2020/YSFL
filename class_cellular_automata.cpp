@@ -1,5 +1,7 @@
 #include "class_cellular_automata.hpp"
 #include <QMessageBox>
+#include "identity.h"
+
 namespace YSFL
 {
     vector<cellular_automata> all_cells;
@@ -175,15 +177,24 @@ namespace YSFL
             {
                 if (universe_616(i, f) < 0)
                     QMessageBox::about(NULL, "", "unknown error");
-                if (universe_616(i, f) != 0)
-                    scene.addRect(QRect(f * 9, i * 9, 9, 9));
+                if (universe_616(i, f) != 0){
+                    double opacity = double (rand() % 999) / 1000;
+                  /*  Qt::GlobalColor color;
+                    if (rand() % 2 == 0) color = Qt::blue;
+                    else color = Qt::red;*/
+                    YSFL::identity *a1 = new YSFL::identity(i * 9, f * 9);
+                    a1->setOpacity(opacity);
+                    scene.addItem(a1);
+                }
+
+                   // scene.addRect(QRect(f * 9, i * 9, 9, 9));
             }
     }
     
     void simulated_world :: randomize()
     {
-        for (int i = 0; i < world_size >> 1; i++)
-            for (int j = 0; j < world_size >> 1; j++)
+        for (int i = 0; i < world_size; i++)
+            for (int j = 0; j < world_size; j++)
                 state[0][i][j] = int(rand() % 2 == 1);
 		current_state_index = 0;
         print(*DisplayScene, *DisplayView);

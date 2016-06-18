@@ -115,6 +115,9 @@ int main(int argc, char *argv[])
     YSFL :: DisplayView = &view;
     view.setFixedSize(1000,1000);
 
+    view.setWindowTitle("YSFL");
+    scene.setBackgroundBrush(QPixmap("/Users/spy/Downloads/11.png"));
+
     view.setRenderHint(QPainter::Antialiasing);
     view.setCacheMode(QGraphicsView::CacheBackground);
     view.setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
