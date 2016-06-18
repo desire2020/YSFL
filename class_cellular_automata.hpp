@@ -24,8 +24,8 @@ namespace YSFL
 	{
 	friend class cellular_automata;
 	protected:
-		int state[world_size][world_size];// 0 for dead 1 for alive(type 1)
-		int succ_state[world_size][world_size];
+		int state[2][world_size][world_size];// 0 for dead 1 for alive(type 1)
+		int current_state_index;
 	public:
 		void evolute();
         void print(QGraphicsScene & targetScene, QGraphicsView & targetView);
