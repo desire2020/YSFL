@@ -18,21 +18,31 @@ namespace YSFL
 		int count = 0;
 		for (;i <= x + view && i < world_size; ++i)
 			for (; j <= y + view && j < world_size; ++j)
-                if (i == x && j == y) continue; else if (universe_616(i, j) > 0) ++count;
+                if (universe_616(i, j) > 0) ++count;
+        count -= int(universe_616(i, j) > 0);
 		return count;
 	}
 	
-	void voidborn(int x, int y, int view = 1) {
+    void voidborn(int x, int y, int view = 1)
+    {
        // QMessageBox::about(NULL, "", "born");
-        if (universe_616(x, y) != 0) return;
+        if (universe_616(x, y) != 0)
+        {
+            universe_616(x, y, 1) = universe_616(x, y);
+            return;
+        }
 		int sum = 0;
-		int i = x - view, j = y - view;
+        int n = 0;
+        int i = x - view, j = y - view;
 		if (i < 0) i = 0;
 		if (j < 0) j = 0;
 		for (; i <= x + view && i < world_size; ++i)
 			for (; j <= y + view && j < world_size; ++j)
-				sum += universe_616(i, j);
-		universe_616(i, j, 1) = (double) sum / (view * view) + 0.5;
+                if (x == i && y == j) continue; else {
+                    sum += universe_616(i, j);
+                    n += int(universe_616(i, j) != 0);
+                }
+        universe_616(x, y, 1) = sum / n + 1 * int(sum % n != 0);
 		//string DNA = all_cells[universe_616(x, y, 1)].DNA;
 	}
    
@@ -46,7 +56,7 @@ namespace YSFL
 
         pos += 3;
      //   QMessageBox::about(NULL, "get", ss.c_str());
-     //   QMessageBox::about(NULL, "", (ss + " " + char(dict[ss] + '0')).c_str());
+       // QMessageBox::about(NULL, "", (ss + " " + char(dict[ss] + '0')).c_str());
    		return dict[ss];
    }
    
@@ -135,17 +145,24 @@ namespace YSFL
 	
 	void simulated_world :: evolve()
 	{
-       // QMessageBox::about(NULL, "", "evolve");
+      //  QMessageBox::about(NULL, "", "evolve");
+
 		for (int i = 0; i < world_size; i++)
         for (int j = 0; j < world_size; j++)
         {
             int x = 0;
+          //  QMessageBox::about(NULL, "", "operate");
             if (all_cells[state[current_state_index][i][j]].operate(i, j, *this, x, 1) == -2)
             {
                 state[1 - current_state_index][i][j] = 0;
             }
+          /*  current_state_index = 1 - current_state_index;
+            print(*DisplayScene, *DisplayView);
+            current_state_index = 1 - current_state_index;*/
         }
+        memset(state[current_state_index], 0, sizeof(state[current_state_index]));
 		current_state_index = 1 - current_state_index;
+      //  QMessageBox::about(NULL, "", "print ready");
         print(*DisplayScene, *DisplayView);
 	}
 	
@@ -156,16 +173,18 @@ namespace YSFL
         for (int i = 0; i < world_size; ++i)
             for (int f = 0; f < world_size; ++f)
             {
+                if (universe_616(i, f) < 0)
+                    QMessageBox::about(NULL, "", "unknown error");
                 if (universe_616(i, f) != 0)
-                    scene.addRect(QRect(i * 9, f * 9, 9, 9));
+                    scene.addRect(QRect(f * 9, i * 9, 9, 9));
             }
     }
     
     void simulated_world :: randomize()
     {
-		for (int i = 0; i < world_size; i++)
-			for (int j = 0; j < world_size; j++)
-				state[0][i][j] = rand() % 2;
+        for (int i = 0; i < world_size >> 1; i++)
+            for (int j = 0; j < world_size >> 1; j++)
+                state[0][i][j] = int(rand() % 2 == 1);
 		current_state_index = 0;
         print(*DisplayScene, *DisplayView);
     }
@@ -176,7 +195,7 @@ namespace YSFL
     }
     int& simulated_world :: operator()(int x, int y, int z)
     {
-    	if (z == 0) return state[current_state_index][x][y];
+        if (z == 0) return state[current_state_index][x][y];
     	return state[1 - current_state_index][x][y];
 	}
 }

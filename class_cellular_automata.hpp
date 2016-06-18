@@ -4,12 +4,13 @@
 #include <vector>
 #include <unordered_map>
 #include <QGraphicsView>
+#include <cstdlib>
 using std :: string;
 using std :: vector;
 using std :: unordered_map;
 namespace YSFL
 {
-	const int world_size = 100;
+    const int world_size = 100;
     class simulated_world;
     class cellular_automata;
     extern vector<cellular_automata> all_cells;
@@ -32,6 +33,10 @@ namespace YSFL
 		int state[2][world_size][world_size];// 0 for dead 1 for alive(type 1)
 		int current_state_index;
 	public:
+        simulated_world()
+        {
+            memset(state, 0, sizeof(state));
+        }
         void evolve();
         void print(QGraphicsScene & targetScene, QGraphicsView & targetView);
         void randomize();
