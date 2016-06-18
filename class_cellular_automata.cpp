@@ -9,7 +9,9 @@ namespace YSFL
     unordered_map<string, int> dict;
     QGraphicsScene *DisplayScene;
     QGraphicsView *DisplayView;
-
+    const int Mutate_rate = 10000;//变异率分之一 
+    const int maxsize = 100000;//最大变异数量 
+    const int maxlength = 100;//最大DNA长度 
 
 	int intdetect(int x, int y, int view) {
       //  QMessageBox::about(NULL, "", "detect");
@@ -25,9 +27,34 @@ namespace YSFL
 		return count;
 	}
 	
+	void Change_To_Next(char &c){
+		if (c == 'A') c = 'C';
+		else if (c == 'C') c = 'G';
+		else if (c == 'G') c = 'T';
+		else (c == 'T') c = 'A';
+	}
+	
+	void Mutate(int x, int y){
+		if (all_cells.size() > maxsize) return;
+		if (rand() % Mutate_rate != 0) return;
+		string DNA = all_cells[universe_616(x, y, 1)].DNA;
+		int kind = rand() % 2;
+		if (kind == 0){
+			int place = rand() % DNA.length();
+			int what = rand() % 4;
+			for (int i = 0; i < what; ++i) Change_To_Next(DNA[place]);	
+		}
+		else {
+			if (DNA.length() > maxlength) return;
+			else DNA = DNA + DNA;
+		}
+		universe_616(x, y, 1) = all_cells.size();
+		all_cells.push_back(cellular_automata(DNA));
+	}
+	
     void voidborn(int x, int y, int view = 1)
     {
-       // QMessageBox::about(NULL, "", "born");
+       //QMessageBox::about(NULL, "", "born");
         if (universe_616(x, y) != 0)
         {
             universe_616(x, y, 1) = universe_616(x, y);
@@ -45,7 +72,7 @@ namespace YSFL
                     n += int(universe_616(i, j) != 0);
                 }
         universe_616(x, y, 1) = sum / n + 1 * int(sum % n != 0);
-		//string DNA = all_cells[universe_616(x, y, 1)].DNA;
+        Mutate(x, y);
 	}
    
    int getword(string &s, int &pos){
