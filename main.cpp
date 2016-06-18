@@ -2,10 +2,13 @@
 #include "class_cellular_automata.hpp"
 #include <QApplication>
 #include <QGraphicsItem>
+#include <QMessageBox>
 #include <QPainter>
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 using YSFL :: cellular_automata;
 using YSFL :: simulated_world;
@@ -99,7 +102,7 @@ void initialization()
 
 int main(int argc, char *argv[])
 {
-
+    srand(time(NULL));
     QApplication a(argc, argv);
     MainDisplayPort w;
     QGraphicsScene scene;
