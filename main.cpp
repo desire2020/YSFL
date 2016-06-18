@@ -112,8 +112,7 @@ int main(int argc, char *argv[])
     QGraphicsView view(&scene);
     YSFL :: DisplayView = &view;
     view.setFixedSize(1000,1000);
-    scene.addRect(QRect(0, 0, 900, 900));
-    scene.clear();
+
     view.setRenderHint(QPainter::Antialiasing);
     view.setCacheMode(QGraphicsView::CacheBackground);
     view.setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);

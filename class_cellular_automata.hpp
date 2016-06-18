@@ -35,7 +35,8 @@ namespace YSFL
         void evolve();
         void print(QGraphicsScene & targetScene, QGraphicsView & targetView);
         void randomize();
-		int& operator()(int x, int y, int z = 0);
+        int& operator()(int x, int y);
+        int& operator()(int x, int y, int z);
 	};
 }
 

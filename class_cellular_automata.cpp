@@ -4,7 +4,9 @@ namespace YSFL
     vector<cellular_automata> all_cells;
     simulated_world universe_616;
     unordered_map<string, int> dict;
-	int getword(string &str, int &pos) {}
+    QGraphicsScene *DisplayScene;
+    QGraphicsView *DisplayView;
+
 
 	int intdetect(int x, int y, int view) {
 		if (view > 10) view = 10;
@@ -19,7 +21,7 @@ namespace YSFL
 	}
 	
 	void voidborn(int x, int y, int view = 1) {
-		if (universe(x, y) != 0) return;
+        if (universe_616(x, y) != 0) return;
 		int sum = 0;
 		int i = x - view, j = y - view;
 		if (i < 0) i = 0;
@@ -37,10 +39,10 @@ namespace YSFL
    		return dict[ss];
    }
    
-   // -2 语法错误； -1 返回值空； >=0 返回int 整形； 
+
 	int cellular_automata :: operate(int x, int y, simulated_world & world, int &len, int flag)
 	{
-		int num = getword(all_cells[state[current_state_index][x][y]].DNA, len);
+        int num = getword(all_cells[world.state[world.current_state_index][x][y]].DNA, len);
 		switch (num) {
 			case 11: {
 				if (flag) {
@@ -106,14 +108,22 @@ namespace YSFL
         for (int j = 0; j < world_size; j++)
         {
             int x = 0;
-            all_cells[state[current_state_index][i][j]].operate(i, j, *this, x);
+            all_cells[state[current_state_index][i][j]].operate(i, j, *this, x, 1);
         }
 		current_state_index = 1 - current_state_index;
+        print(*DisplayScene, *DisplayView);
 	}
 	
-    void simulated_world :: print(QGraphicsScene & target_scene, QGraphicsView &target_view)
+    void simulated_world :: print(QGraphicsScene & scene, QGraphicsView &view)
     {
-		
+        scene.clear();
+        scene.addRect(QRect(0, 0, 900, 900));
+        for (int i = 0; i < world_size; ++i)
+            for (int f = 0; f < world_size; ++f)
+            {
+                if (universe_616(i, f) != 0)
+                    scene.addRect(QRect(i * 9, f * 9, 9, 9));
+            }
     }
     
     void simulated_world :: randomize()
@@ -122,9 +132,14 @@ namespace YSFL
 			for (int j = 0; j < world_size; j++)
 				state[0][i][j] = rand() % 2;
 		current_state_index = 0;
+        print(*DisplayScene, *DisplayView);
     }
 
-	int& simulated_world :: operator()(int x, int y, int z = 0)
+    int& simulated_world :: operator()(int x, int y)
+    {
+        return state[current_state_index][x][y];
+    }
+    int& simulated_world :: operator()(int x, int y, int z)
     {
     	if (z == 0) return state[current_state_index][x][y];
     	return state[1 - current_state_index][x][y];
