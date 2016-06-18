@@ -14,14 +14,14 @@ namespace YSFL
 	int intdetect(int x, int y, int view) {
       //  QMessageBox::about(NULL, "", "detect");
 		if (view > 10) view = 10;
-		int i = x - view, j = y - view;
-		if (i < 0) i = 0;
-		if (j < 0) j = 0;
+        int i0 = x - view, j0 = y - view;
+        if (i0 < 0) i0 = 0;
+        if (j0 < 0) j0 = 0;
 		int count = 0;
-		for (;i <= x + view && i < world_size; ++i)
-			for (; j <= y + view && j < world_size; ++j)
+        for (int i = i0; i <= x + view && i < world_size; ++i)
+            for (int j = j0; j <= y + view && j < world_size; ++j)
                 if (universe_616(i, j) > 0) ++count;
-        count -= int(universe_616(i, j) > 0);
+        count -= int(universe_616(x, y) > 0);
 		return count;
 	}
 	
@@ -35,11 +35,11 @@ namespace YSFL
         }
 		int sum = 0;
         int n = 0;
-        int i = x - view, j = y - view;
-		if (i < 0) i = 0;
-		if (j < 0) j = 0;
-		for (; i <= x + view && i < world_size; ++i)
-			for (; j <= y + view && j < world_size; ++j)
+        int i0 = x - view, j0 = y - view;
+        if (i0 < 0) i0 = 0;
+        if (j0 < 0) j0 = 0;
+        for (int i = i0; i <= x + view && i < world_size; ++i)
+            for (int j = j0; j <= y + view && j < world_size; ++j)
                 if (x == i && y == j) continue; else {
                     sum += universe_616(i, j);
                     n += int(universe_616(i, j) != 0);
@@ -144,7 +144,7 @@ namespace YSFL
                 return num - 5;
 		}
 	}
-	
+
 	void simulated_world :: evolve()
 	{
       //  QMessageBox::about(NULL, "", "evolve");
@@ -158,12 +158,9 @@ namespace YSFL
             {
                 state[1 - current_state_index][i][j] = 0;
             }
-          /*  current_state_index = 1 - current_state_index;
-            print(*DisplayScene, *DisplayView);
-            current_state_index = 1 - current_state_index;*/
         }
         memset(state[current_state_index], 0, sizeof(state[current_state_index]));
-		current_state_index = 1 - current_state_index;
+        current_state_index = 1 - current_state_index;
       //  QMessageBox::about(NULL, "", "print ready");
         print(*DisplayScene, *DisplayView);
 	}

@@ -32,7 +32,10 @@ void MainDisplayPort::on_pushButton_clicked()
 
 void MainDisplayPort::on_pushButton_2_clicked()
 {
+    for (int i = 0; i < 1000; ++i)
+    {
 
+    }
 }
 
 void MainDisplayPort::on_pushButton_4_clicked()
