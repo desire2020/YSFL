@@ -1,0 +1,18 @@
+if : TTT TTC
+equals : TTA TTG CTA CTT CTC CTG
+detect : ATA ATT ATC
+born : TCA TCT TCC TCG
+die : CCA CCT CCC CCG
+still : ACA ACT ACC ACG
+1 : GTA GTT GTC GTG
+2 : GCA GCT GCC GCG
+3 : TAX
+4 : CAX
+5 : AAX
+6 : GAX
+7 : TGX
+8 : CGX
+9 : AGX
+10 : GGX
+
+X = each in {A, T, C, G}
