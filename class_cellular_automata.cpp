@@ -16,7 +16,6 @@ namespace YSFL
     
 	int cellular_automata :: operate(int &x, int &y, simulated_world & world, int &len, int flag)
 	{
-<<<<<<< HEAD
 		switch (getword(all_cells[state[current_state_index][x][y]].DNA) {
 			case 11: {
 				switch (operate(x, y, world, len, 0)) {
@@ -40,9 +39,6 @@ namespace YSFL
 			}
 			break;
 		}
-=======
-        //switch (getword(all_cells[state[current_state_index][x][y])
->>>>>>> origin/master
 	}
 	
 	void simulated_world :: evolve()

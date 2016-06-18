@@ -23,11 +23,7 @@ namespace YSFL
 		string DNA;
 	public:
 		cellular_automata(const string & src) : DNA(src) {}
-<<<<<<< HEAD
         int operate(int x, int y, simulated_world & world, int &len, int flag);
-=======
-        void operate(int x, int y, simulated_world & world, int &len);
->>>>>>> origin/master
 	};
 	class simulated_world
 	{
