@@ -10,7 +10,7 @@ namespace YSFL
 
 
 	int intdetect(int x, int y, int view) {
-       // QMessageBox::about(NULL, "", "detect");
+      //  QMessageBox::about(NULL, "", "detect");
 		if (view > 10) view = 10;
 		int i = x - view, j = y - view;
 		if (i < 0) i = 0;
@@ -23,7 +23,7 @@ namespace YSFL
 	}
 	
 	void voidborn(int x, int y, int view = 1) {
-     //   QMessageBox::about(NULL, "", "born");
+       // QMessageBox::about(NULL, "", "born");
         if (universe_616(x, y) != 0) return;
 		int sum = 0;
 		int i = x - view, j = y - view;
@@ -38,7 +38,7 @@ namespace YSFL
    
    int getword(string &s, int &pos){
       // QMessageBox::about(NULL, "", "getword");
-      // QMessageBox::about(NULL, "target", s.c_str());
+     //  QMessageBox::about(NULL, "target", s.c_str());
        if (pos >= s.length())
            throw -1;
    		string ss (s, pos, 3);
@@ -123,7 +123,7 @@ namespace YSFL
 
                 if (flag) {
                     world.state[1 - world.current_state_index][x][y] = world.state[world.current_state_index][x][y];
-                  //  QMessageBox::about(NULL, "", "still");
+                   // QMessageBox::about(NULL, "", "still");
                 }
                 return -1;
 			}
