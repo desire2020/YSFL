@@ -16,11 +16,12 @@ using YSFL :: dict;
 void create_new()
 {
     ofstream fout("settings.ini");
-    fout << "TTTTTGATAGTATAXTCTCCG\nTTTTTGATAGTAGCTACATTCTTGATTGTTTAXTCCCCA\n";
+    fout << "TTTTTGATAGTATATTCTCCG\nTTTTTGATAGTAGCTACATTCTTGATTGTTTATTCCCCA\n";
     fout.close();
 }
 void initialization()
 {
+    create_new();
     ifstream fin("settings.ini");
     if (!fin.is_open())
     {
@@ -104,6 +105,7 @@ int main(int argc, char *argv[])
 {
     srand(time(NULL));
     QApplication a(argc, argv);
+    initialization();
     MainDisplayPort w;
     QGraphicsScene scene;
     YSFL :: DisplayScene = &scene;

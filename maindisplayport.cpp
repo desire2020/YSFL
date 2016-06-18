@@ -27,7 +27,7 @@ void MainDisplayPort::on_pushButton_clicked()
 {
     YSFL :: universe_616.evolve();
     //YSFL :: universe_616.print(DisplayScene, *DisplayArea);
-    QMessageBox::about(NULL, "", "Done");
+  //  QMessageBox::about(NULL, "", "Done");
 }
 
 void MainDisplayPort::on_pushButton_2_clicked()

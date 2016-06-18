@@ -1,4 +1,5 @@
 #include "class_cellular_automata.hpp"
+#include <QMessageBox>
 namespace YSFL
 {
     vector<cellular_automata> all_cells;
@@ -9,6 +10,7 @@ namespace YSFL
 
 
 	int intdetect(int x, int y, int view) {
+       // QMessageBox::about(NULL, "", "detect");
 		if (view > 10) view = 10;
 		int i = x - view, j = y - view;
 		if (i < 0) i = 0;
@@ -16,11 +18,12 @@ namespace YSFL
 		int count = 0;
 		for (;i <= x + view && i < world_size; ++i)
 			for (; j <= y + view && j < world_size; ++j)
-				if (universe_616(i, j) > 0) ++count;
+                if (i == x && j == y) continue; else if (universe_616(i, j) > 0) ++count;
 		return count;
 	}
 	
 	void voidborn(int x, int y, int view = 1) {
+     //   QMessageBox::about(NULL, "", "born");
         if (universe_616(x, y) != 0) return;
 		int sum = 0;
 		int i = x - view, j = y - view;
@@ -33,18 +36,35 @@ namespace YSFL
 		//string DNA = all_cells[universe_616(x, y, 1)].DNA;
 	}
    
-   int getword(const string &s, int &pos){
+   int getword(string &s, int &pos){
+      // QMessageBox::about(NULL, "", "getword");
+      // QMessageBox::about(NULL, "target", s.c_str());
+       if (pos >= s.length())
+           throw -1;
    		string ss (s, pos, 3);
-   		pos += 3;
+
+
+        pos += 3;
+     //   QMessageBox::about(NULL, "get", ss.c_str());
+     //   QMessageBox::about(NULL, "", (ss + " " + char(dict[ss] + '0')).c_str());
    		return dict[ss];
    }
    
 
 	int cellular_automata :: operate(int x, int y, simulated_world & world, int &len, int flag)
 	{
-        int num = getword(all_cells[world.state[world.current_state_index][x][y]].DNA, len);
+       // QMessageBox::about(NULL, "", "operate");
+        int num;
+        try {
+        num = getword(all_cells[world.state[world.current_state_index][x][y]].DNA, len);
+        } catch(...) {
+            return -2;
+        }
+
+        //  QMessageBox::about(NULL, "", "getword end");
 		switch (num) {
-			case 11: {
+            case 0: {
+              //  QMessageBox::about(NULL, "", "if");
 				if (flag) {
 					switch (operate(x, y, world, len, 0)) {
 						case -2:case -1: return -2;
@@ -68,14 +88,16 @@ namespace YSFL
 					}
 				}
 			}
-			case 12: {
+            case 1: {
+               // QMessageBox::about(NULL, "", "equals");
 				if (flag) return -2;
 				int tmp1 = operate(x, y, world, len, 0);
 				int tmp2 = operate(x, y, world, len, 0);
 				if (tmp1 >= 0 && tmp2 >= 0) return (tmp1 == tmp2);
 				return -2;
 			}
-			case 13: {
+            case 2: {
+
 				if (flag) return -2;
 				int tmp = operate(x, y, world, len, 0);
 				switch (tmp) {
@@ -84,31 +106,44 @@ namespace YSFL
 						return intdetect(x, y, tmp);
 				}
 			}
-			case 14: {
-				if (flag) voidborn(x, y);
+            case 3: {
+
+                if (flag) voidborn(x, y);
 				return -1;
 			}
-			case 15: {
-				if (flag) world.state[1 - world.current_state_index][x][y] = 0;
+            case 4: {
+
+                if (flag) {
+                  //  QMessageBox::about(NULL, "", "die");
+                    world.state[1 - world.current_state_index][x][y] = 0;
+                }
 				return -1;
 			}
-			case 16: {
-				if (flag) world.state[1 - world.current_state_index][x][y] = world.state[world.current_state_index][x][y];
-				return -1;
+            case 5: {
+
+                if (flag) {
+                    world.state[1 - world.current_state_index][x][y] = world.state[world.current_state_index][x][y];
+                  //  QMessageBox::about(NULL, "", "still");
+                }
+                return -1;
 			}
 			default:
 				if (flag) return -2;
-				return num;
+                return num - 5;
 		}
 	}
 	
 	void simulated_world :: evolve()
 	{
+       // QMessageBox::about(NULL, "", "evolve");
 		for (int i = 0; i < world_size; i++)
         for (int j = 0; j < world_size; j++)
         {
             int x = 0;
-            all_cells[state[current_state_index][i][j]].operate(i, j, *this, x, 1);
+            if (all_cells[state[current_state_index][i][j]].operate(i, j, *this, x, 1) == -2)
+            {
+                state[1 - current_state_index][i][j] = 0;
+            }
         }
 		current_state_index = 1 - current_state_index;
         print(*DisplayScene, *DisplayView);
