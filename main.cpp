@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
     scene.setItemIndexMethod(QGraphicsScene::NoIndex);
     QGraphicsView view(&scene);
     view.setFixedSize(1000,1000);
-    QGraphicsRectItem *rect = scene.addRect(QRectF(0, 0, 900, 900));
-    //QGraphicsItem *item = scene.itemAt(50, 50);
+    scene.addRect(QRect(0, 0, 900, 900));
+    scene.clear();
     view.setRenderHint(QPainter::Antialiasing);
     view.setCacheMode(QGraphicsView::CacheBackground);
     view.setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
