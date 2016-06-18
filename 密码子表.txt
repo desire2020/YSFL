@@ -1,6 +1,6 @@
 if : TTT TTC
 equals : TTA TTG CTA CTT CTC CTG
-detect : ATA ATT ATC
+detect : ATA ATT ATC ATG
 born : TCA TCT TCC TCG
 die : CCA CCT CCC CCG
 still : ACA ACT ACC ACG
