@@ -19,7 +19,7 @@ QRectF identity::boundingRect() const
 void identity::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     QPixmap pix;
-    pix.load("/Users/spy/Downloads/sparkle.png");
+    pix.load(":/light.png");
     painter->save();
     painter->drawPixmap(0,0,32,32,pix);
 

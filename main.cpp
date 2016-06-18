@@ -105,6 +105,7 @@ int main(int argc, char *argv[])
 {
     srand(time(NULL));
     QApplication a(argc, argv);
+    inPro = &a;
     initialization();
     MainDisplayPort w;
     QGraphicsScene scene;
@@ -116,7 +117,7 @@ int main(int argc, char *argv[])
     view.setFixedSize(1000,1000);
 
     view.setWindowTitle("YSFL");
-    scene.setBackgroundBrush(QPixmap("/Users/spy/Downloads/11.png"));
+    scene.setBackgroundBrush(QPixmap(":/11.png"));
 
     view.setRenderHint(QPainter::Antialiasing);
     view.setCacheMode(QGraphicsView::CacheBackground);

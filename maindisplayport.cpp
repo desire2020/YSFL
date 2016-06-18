@@ -6,6 +6,8 @@
 #include <QMessageBox>
 #include <QThread>
 
+QApplication *inPro;
+bool infinity_flag = false;
 MainDisplayPort::MainDisplayPort(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainDisplayPort)
@@ -33,12 +35,14 @@ void MainDisplayPort::on_pushButton_clicked()
 
 void MainDisplayPort::on_pushButton_2_clicked()
 {
-    for (int i = 0; i < 200000; i++)
+    infinity_flag = true;
+    while(infinity_flag)
     {
         on_pushButton_clicked();
         YSFL :: universe_616.print(*YSFL :: DisplayScene, *YSFL :: DisplayView);
-        QMessageBox::about(NULL, "", "Done");
-        //QThread :: msleep(1000);
+        inPro -> processEvents();
+       // QMessageBox::about(NULL, "", "Done");
+        QThread :: msleep(10);
     }
 }
 
@@ -46,4 +50,9 @@ void MainDisplayPort::on_pushButton_4_clicked()
 {
     YSFL :: universe_616.randomize();
    // YSFL :: universe_616.print(DisplayScene, *DisplayArea);
+}
+
+void MainDisplayPort::on_pushButton_3_clicked()
+{
+    infinity_flag = false;
 }

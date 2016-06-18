@@ -22,3 +22,7 @@ HEADERS  += maindisplayport.hpp \
     identity.h
 
 FORMS    += maindisplayport.ui
+
+RESOURCES += \
+    C:/Users/desir/Desktop/res/res.qrc
+

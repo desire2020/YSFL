@@ -20,9 +20,8 @@ namespace YSFL
     extern QGraphicsView *DisplayView;
 	class cellular_automata
 	{
-	protected:
-		string DNA;
-	public:
+    public:
+        string DNA;
 		cellular_automata(const string & src) : DNA(src) {}
         int operate(int x, int y, simulated_world & world, int &len, int flag);
 	};

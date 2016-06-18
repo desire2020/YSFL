@@ -9,9 +9,9 @@ namespace YSFL
     unordered_map<string, int> dict;
     QGraphicsScene *DisplayScene;
     QGraphicsView *DisplayView;
-    const int Mutate_rate = 10000;//变异率分之一 
-    const int maxsize = 100000;//最大变异数量 
-    const int maxlength = 100;//最大DNA长度 
+    const int Mutate_rate = 10000; 
+    const int maxsize = 100000; 
+    const int maxlength = 100;
 
 	int intdetect(int x, int y, int view) {
       //  QMessageBox::about(NULL, "", "detect");
@@ -31,12 +31,14 @@ namespace YSFL
 		if (c == 'A') c = 'C';
 		else if (c == 'C') c = 'G';
 		else if (c == 'G') c = 'T';
-		else (c == 'T') c = 'A';
+        else if(c == 'T') c = 'A';
 	}
 	
 	void Mutate(int x, int y){
+
 		if (all_cells.size() > maxsize) return;
 		if (rand() % Mutate_rate != 0) return;
+       // QMessageBox::about(NULL, "", "Mutation happens!");
 		string DNA = all_cells[universe_616(x, y, 1)].DNA;
 		int kind = rand() % 2;
 		if (kind == 0){
@@ -209,9 +211,10 @@ namespace YSFL
                     YSFL::identity *a1 = new YSFL::identity(i * 9, f * 9);
                     a1->setOpacity(opacity);
                     scene.addItem(a1);
+                    scene.addRect(QRect(f * 9, i * 9, 9, 9));
                 }
 
-                   // scene.addRect(QRect(f * 9, i * 9, 9, 9));
+                   //
             }
     }
     
