@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>image/1.jpg</file>
+        <file>image/0130391F45570601FB6EFD3107D87C689C488E-F0AE-4B55-4C30-4D8DA975407E.jpg</file>
+        <file>image/2kT0oTA.png</file>
+        <file>image/images.jpg</file>
+        <file>image/科技感水溝蓋1.jpg</file>
+        <file>image/11.png</file>
+        <file>image/light.png</file>
+        <file>image/sparkle.png</file>
+    </qresource>
+</RCC>

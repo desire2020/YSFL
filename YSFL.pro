@@ -24,6 +24,7 @@ HEADERS  += maindisplayport.hpp \
 FORMS    += maindisplayport.ui
 
 RESOURCES += \
-    res.qrc
+    res.qrc \
+    imagefile.qrc
 
 

@@ -17,8 +17,8 @@ MainDisplayPort::MainDisplayPort(QWidget *parent) :
     flags |= Qt::WindowMinimizeButtonHint;
     flags |= Qt::WindowCloseButtonHint;
     setWindowFlags(flags);
-    setFixedSize(650,164);
-
+    setFixedSize(811,640);
+    move(1000, 250);
 }
 
 MainDisplayPort::~MainDisplayPort()
@@ -42,7 +42,7 @@ void MainDisplayPort::on_pushButton_2_clicked()
         YSFL :: universe_616.print(*YSFL :: DisplayScene, *YSFL :: DisplayView);
         inPro -> processEvents();
        // QMessageBox::about(NULL, "", "Done");
-        QThread :: msleep(10);
+      //  QThread :: msleep(10);
     }
 }
 

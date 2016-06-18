@@ -197,21 +197,21 @@ namespace YSFL
     void simulated_world :: print(QGraphicsScene & scene, QGraphicsView &view)
     {
         scene.clear();
-        scene.addRect(QRect(0, 0, 900, 900));
+       // scene.addRect(QRect(0, 0, 900, 900));
         for (int i = 0; i < world_size; ++i)
             for (int f = 0; f < world_size; ++f)
             {
                 if (universe_616(i, f) < 0)
                     QMessageBox::about(NULL, "", "unknown error");
                 if (universe_616(i, f) != 0){
-                    double opacity = double (rand() % 999) / 1000;
+                    double opacity = double ((rand() % 499) + 500) / 1000;
                   /*  Qt::GlobalColor color;
                     if (rand() % 2 == 0) color = Qt::blue;
                     else color = Qt::red;*/
                     YSFL::identity *a1 = new YSFL::identity(i * 9, f * 9);
                     a1->setOpacity(opacity);
                     scene.addItem(a1);
-                    scene.addRect(QRect(f * 9, i * 9, 9, 9));
+                    //scene.addRect(QRect(f * 9, i * 9, 9, 9));
                 }
 
                    //
