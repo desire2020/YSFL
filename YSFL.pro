@@ -24,5 +24,6 @@ HEADERS  += maindisplayport.hpp \
 FORMS    += maindisplayport.ui
 
 RESOURCES += \
-    C:/Users/desir/Desktop/res/res.qrc
+    res.qrc
+
 
