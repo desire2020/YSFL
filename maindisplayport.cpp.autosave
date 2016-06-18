@@ -37,6 +37,7 @@ void MainDisplayPort::on_pushButton_2_clicked()
     {
         on_pushButton_clicked();
         YSFL :: universe_616.print(*YSFL :: DisplayScene, *YSFL :: DisplayView);
+        
         QMessageBox::about(NULL, "", "Done");
         //QThread :: msleep(1000);
     }
