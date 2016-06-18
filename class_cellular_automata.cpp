@@ -3,7 +3,7 @@ namespace YSFL
 {
     vector<cellular_automata> all_cells;
     simulated_world universe_616;
-	
+    unordered_map<string, int> dict;
 	int getword(string &str, int &pos) {}
 	
 	int voidif() {return -1;}

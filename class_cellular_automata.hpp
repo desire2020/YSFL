@@ -2,9 +2,11 @@
 #define CLASS_CELLULAR_AUTOMATA
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include <QGraphicsView>
 using std :: string;
 using std :: vector;
+using std :: unordered_map;
 namespace YSFL
 {
 	const int world_size = 100;
@@ -12,6 +14,7 @@ namespace YSFL
     class cellular_automata;
     extern vector<cellular_automata> all_cells;
     extern simulated_world universe_616; //I'm a super Marvel fan! :)
+    extern unordered_map<string, int> dict;
 	class cellular_automata
 	{
 	protected:
