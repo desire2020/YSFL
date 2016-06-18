@@ -14,15 +14,16 @@ namespace YSFL
 	int voidstill() {}
 	
     
-	void cellular_automata :: operate(int x, int y, simulated_world & world)
+	void cellular_automata :: operate(int x, int y, simulated_world & world, int &len)
 	{
+		switch (getword(all_cells[state[current_state_index][x][y])
 	}
 	
 	void simulated_world :: evolve()
 	{
 		for (int i = 0; i < world_size; i++)
 			for (int j = 0; j < world_size; j++)
-				all_cells[state[current_stata_index][i][j]].operate(i, j, *this);
+				all_cells[state[current_state_index][i][j]].operate(i, j, *this);
 		current_state_index = 1 - current_state_index;
 	}
 	
