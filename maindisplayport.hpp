@@ -2,11 +2,11 @@
 #define MAINDISPLAYPORT_HPP
 
 #include <QMainWindow>
-
+#include <QGraphicsView>
+#include <QGraphicsScene>
 namespace Ui {
 class MainDisplayPort;
 }
-
 class MainDisplayPort : public QMainWindow
 {
     Q_OBJECT
@@ -22,7 +22,7 @@ private slots:
 
     void on_pushButton_4_clicked();
 
-private:
+public:
     Ui::MainDisplayPort *ui;
 };
 

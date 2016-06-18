@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>900</height>
+    <width>650</width>
+    <height>164</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,33 +23,11 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>850</width>
-      <height>850</height>
-     </rect>
-    </property>
-    <property name="cursor" stdset="0">
-     <cursorShape>ArrowCursor</cursorShape>
-    </property>
-    <property name="verticalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
-    <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
-    <property name="sizeAdjustPolicy">
-     <enum>QAbstractScrollArea::AdjustToContents</enum>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>10</y>
+      <x>480</x>
+      <y>50</y>
       <width>121</width>
       <height>41</height>
      </rect>
@@ -61,8 +39,8 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>160</y>
+      <x>330</x>
+      <y>50</y>
       <width>121</width>
       <height>41</height>
      </rect>
@@ -74,8 +52,8 @@
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>300</y>
+      <x>180</x>
+      <y>50</y>
       <width>121</width>
       <height>41</height>
      </rect>
@@ -87,8 +65,8 @@
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>450</y>
+      <x>30</x>
+      <y>50</y>
       <width>121</width>
       <height>41</height>
      </rect>
@@ -103,7 +81,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
+     <width>650</width>
      <height>23</height>
     </rect>
    </property>

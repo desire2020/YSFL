@@ -3,6 +3,7 @@ namespace YSFL
 {
     vector<cellular_automata> all_cells;
     simulated_world universe_616;
+
 	void cellular_automata :: operate(int x, int y, simulated_world & context)
 	{
 
@@ -11,7 +12,7 @@ namespace YSFL
 	{
 		
 	}
-    void simulated_world :: print(QGraphicsView &target)
+    void simulated_world :: print(QGraphicsScene &targetScene, QGraphicsView &targetView)
     {
 
     }

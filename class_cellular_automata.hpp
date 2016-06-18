@@ -28,7 +28,7 @@ namespace YSFL
 		int succ_state[world_size][world_size];
 	public:
 		void evolute();
-        void print(QGraphicsView & target);
+        void print(QGraphicsScene & targetScene, QGraphicsView & targetView);
         void randomize();
 		int& operator()(int x, int y);
 	};
