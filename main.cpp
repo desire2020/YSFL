@@ -21,7 +21,7 @@ void create_new()
 }
 void initialization()
 {
-    create_new();
+    //create_new();
     ifstream fin("settings.ini");
     if (!fin.is_open())
     {
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 
     view.setRenderHint(QPainter::Antialiasing);
     view.setCacheMode(QGraphicsView::CacheBackground);
-    view.setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+    view.setViewportUpdateMode(QGraphicsView::/*BoundingRect*/FullViewportUpdate);
     view.setDragMode(QGraphicsView::ScrollHandDrag);
     //view.resize(400,300);
     view.show();

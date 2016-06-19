@@ -208,10 +208,13 @@ namespace YSFL
                   /*  Qt::GlobalColor color;
                     if (rand() % 2 == 0) color = Qt::blue;
                     else color = Qt::red;*/
-                    YSFL::identity *a1 = new YSFL::identity(i * 9, f * 9);
+                    YSFL::identity *a1;
+                    if (universe_616(i, f) == 1)
+                        a1 = new YSFL::identity(i * 9, f * 9);
+                    else
+                        a1 = new YSFL::identity(i * 9, f * 9, ":/sparkle.png");
                     a1->setOpacity(opacity);
                     scene.addItem(a1);
-                    //scene.addRect(QRect(f * 9, i * 9, 9, 9));
                 }
 
                    //

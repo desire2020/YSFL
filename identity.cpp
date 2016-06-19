@@ -1,16 +1,20 @@
 #include <QPainter>
 
 #include "identity.h"
-using namespace YSFL;
 namespace YSFL{
 static const qreal IDENTITY_RADIUS = 3;
 
 identity::identity(qreal x, qreal y, Qt::GlobalColor c)
 {
     setPos(x, y);
+    style = ":/light.png";
     col = c;
 }
-
+identity::identity(qreal x, qreal y, string _style) : style(_style)
+{
+    setPos(x, y);
+    col = Qt::red;
+}
 QRectF identity::boundingRect() const
 {
     return QRectF(0, 0, 9, 9);
@@ -19,7 +23,7 @@ QRectF identity::boundingRect() const
 void identity::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     QPixmap pix;
-    pix.load(":/light.png");
+    pix.load(style.c_str());
     painter->save();
     painter->drawPixmap(0,0,32,32,pix);
 
