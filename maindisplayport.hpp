@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QCloseEvent>
 
 extern QApplication* inPro;
 namespace Ui {
@@ -25,7 +26,8 @@ private slots:
     void on_pushButton_4_clicked();
 
     void on_pushButton_3_clicked();
-
+protected:
+	void closeEvent(QCloseEvent *event);
 public:
     Ui::MainDisplayPort *ui;
 };

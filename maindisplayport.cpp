@@ -42,7 +42,7 @@ void MainDisplayPort::on_pushButton_2_clicked()
         YSFL :: universe_616.print(*YSFL :: DisplayScene, *YSFL :: DisplayView);
         inPro -> processEvents();
        // QMessageBox::about(NULL, "", "Done");
-      //  QThread :: msleep(10);
+        QThread :: msleep(20);
     }
 }
 
@@ -55,4 +55,10 @@ void MainDisplayPort::on_pushButton_4_clicked()
 void MainDisplayPort::on_pushButton_3_clicked()
 {
     infinity_flag = false;
+}
+
+void MainDisplayPort::closeEvent(QCloseEvent *event)
+{
+	infinity_flag = false;
+	inPro -> exit(0);
 }
